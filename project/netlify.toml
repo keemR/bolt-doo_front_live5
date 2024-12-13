@@ -1,0 +1,23 @@
+# Netlify configuration file
+
+  [build]
+    command = "npm run build"
+    publish = "dist"
+
+  # Redirects for WordPress API
+  [[redirects]]
+    from = "/wp-json/*"
+    to = "${PUBLIC_WORDPRESS_API_URL}/:splat"
+    status = 200
+    force = true
+
+  # Redirects for pretty URLs
+  [[redirects]]
+    from = "/articles/:slug"
+    to = "/.netlify/functions/server/articles/:slug"
+    status = 200
+
+  [[redirects]]
+    from = "/*"
+    to = "/.netlify/functions/server"
+    status = 200
